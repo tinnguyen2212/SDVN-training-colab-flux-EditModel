@@ -1,10 +1,10 @@
 ---
 job: extension
 config:
-  name: "aodai_vietnam"
+  name: "lora_name"
   process:
     - type: 'sd_trainer'
-      training_folder: "/content/drive/Shareddrives/StableDiffusion/Lora"
+      training_folder: "/content/Lora"
       device: cuda:0
       network:
         type: "lora"
@@ -16,7 +16,7 @@ config:
         max_step_saves_to_keep: 4 
         push_to_hub: false 
       datasets:
-        - folder_path: "/content/drive/Shareddrives/StableDiffusion/TrainData/Wear/aodai"
+        - folder_path: "/content/"
           caption_ext: "txt"
           caption_dropout_rate: 0.05  
           shuffle_tokens: false  
@@ -49,12 +49,12 @@ config:
         width: 1024
         height: 1024
         prompts:
-          - "aodai vietnam"
+          - "girl portrait"
         neg: "" 
         seed: 42
         walk_seed: true
         guidance_scale: 3.5 
         sample_steps: 20
 meta:
-  name: "aodai_vietnam"
+  name: "lora_name"
   version: '1.0'
