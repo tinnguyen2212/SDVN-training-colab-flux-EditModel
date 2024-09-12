@@ -1,0 +1,60 @@
+---
+job: extension
+config:
+  name: "aodai_vietnam"
+  process:
+    - type: 'sd_trainer'
+      training_folder: "/content/drive/Shareddrives/StableDiffusion/Lora"
+      device: cuda:0
+      network:
+        type: "lora"
+        linear: 16
+        linear_alpha: 16
+      save:
+        dtype: float16 
+        save_every: 350
+        max_step_saves_to_keep: 4 
+        push_to_hub: false 
+      datasets:
+        - folder_path: "/content/drive/Shareddrives/StableDiffusion/TrainData/Wear/aodai"
+          caption_ext: "txt"
+          caption_dropout_rate: 0.05  
+          shuffle_tokens: false  
+          cache_latents_to_disk: true  
+          resolution: [ 512, 768, 1024 ]
+      train:
+        batch_size: 1
+        steps: 1400
+        gradient_accumulation_steps: 1
+        train_unet: true
+        train_text_encoder: false  
+        gradient_checkpointing: true  
+        noise_scheduler: "flowmatch"
+        optimizer: "adamw8bit"
+        lr: 4e-4
+        ema_config:
+          use_ema: true
+          ema_decay: 0.99
+        dtype: bf16
+        skip_first_sample: true,
+        disable_sampling: false
+      model:
+        name_or_path: "black-forest-labs/FLUX.1-dev"
+        is_flux: true
+        quantize: true  
+        low_vram: true
+      sample:
+        sampler: "flowmatch" 
+        sample_every: 350
+        width: 1024
+        height: 1024
+        prompts:
+          - "aodai vietnam"
+        neg: "" 
+        seed: 42
+        walk_seed: true
+        guidance_scale: 3.5 
+        sample_steps: 20
+meta:
+  name: "aodai_vietnam"
+  version: '1.0'
