@@ -1,3 +1,2 @@
-torch==2.4.1
 flash_attn
 timm==1.0.9
