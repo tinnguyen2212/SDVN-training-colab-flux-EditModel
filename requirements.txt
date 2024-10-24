@@ -1,2 +1,2 @@
 flash_attn
-timm
+timm==1.0.9
