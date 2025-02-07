@@ -34,4 +34,4 @@ peft
 gradio
 python-slugify
 OpenAI
-google-generativeai
+google-genai
